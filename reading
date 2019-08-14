@@ -1,0 +1,20 @@
+'''
+    by Guangwu Cui
+    '''
+sudongpo
+    algorithm
+    problem
+        -pre
+    data
+        -input
+           -i
+           -doc
+           -video
+           -other
+        -output
+           -i
+           -doc
+           -video
+           -other
+        -display
+           -tensorboard
