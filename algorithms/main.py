@@ -5,20 +5,14 @@ import os
 
 import torch
 import torch.multiprocessing as mp
-import test
-import train
+import algorithms.rl.a3c.ptn.test as test
+import algorithms.rl.a3c.ptn.train as train
 
 import socket
-print(os.getcwd())
-path = os.getcwd()
-
 from algorithms.rl.a3c.ptn.a3c_optimal import *
 
 from algorithms.dao.rl.envs import create_atari_env
 from algorithms.rl.a3c.ptn.model import ActorCritic
-
-os.chdir(path+"/algorithms/rl/a3c/ptn")
-print(os.getcwd())
 
 # Based on
 # https://github.com/pytorch/examples/tree/master/mnist_hogwild

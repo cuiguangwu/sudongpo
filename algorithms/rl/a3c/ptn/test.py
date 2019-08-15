@@ -3,11 +3,13 @@ from collections import deque
 
 import torch
 import torch.nn.functional as F
+import os
+os.chdir("/home/gw/code/sudongpo")
+print(os.getcwd())
+from algorithms.rl.a3c.ptn.a3c_optimal import *
 
-
-from ....dao.rl.envs import create_atari_env
-from ..ptn.model import ActorCritic
-
+from algorithms.dao.rl.envs import create_atari_env
+from algorithms.rl.a3c.ptn.model import ActorCritic
 
 def test(rank, args, shared_model, counter):
     torch.manual_seed(args.seed + rank)

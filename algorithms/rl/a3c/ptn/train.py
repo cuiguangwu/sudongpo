@@ -3,11 +3,13 @@ import torch.nn.functional as F
 import torch.optim as optim
 
 
-import sys
+import os
+os.chdir("/home/gw/code/sudongpo")
+print(os.getcwd())
 
-import model
-import sudongpo.algorithms.dao.rl.evs as evs
 
+import algorithms.dao.rl.envs as envs
+import algorithms.rl.a3c.ptn.model as ptnmodel
 
 def ensure_shared_grads(model, shared_model):
     for param, shared_param in zip(model.parameters(),
@@ -20,10 +22,10 @@ def ensure_shared_grads(model, shared_model):
 def train(rank, args, shared_model, counter, lock, optimizer=None):
     torch.manual_seed(args.seed + rank)
 
-    env = evs.create_atari_env(args.env_name)
+    env = envs.create_atari_env(args.env_name)
     env.seed(args.seed + rank)
 
-    model = model.ActorCritic(env.observation_space.shape[0], env.action_space)
+    model = ptnmodel.ActorCritic(env.observation_space.shape[0], env.action_space)
 
     if optimizer is None:
         optimizer = optim.Adam(shared_model.parameters(), lr=args.lr)
